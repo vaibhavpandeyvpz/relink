@@ -1,3 +1,16 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+connect_facebook_check:
+    methods: GET
+    path: /connect/facebook/check
+
+connect_google_check:
+    methods: GET
+    path: /connect/google/check
+
+logout:
+    methods: GET
+    path: /logout
+
+home_open:
+    controller: App\Controller\HomeController::open
+    methods: GET
+    path: /{slug}

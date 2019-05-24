@@ -1,0 +1,53 @@
+{% extends 'console.html.twig' %}
+
+{% block title %}{{ 'Dashboard'|trans }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block heading %}{{ 'Dashboard'|trans }}{% endblock %}
+{% block subheading %}{{ "Your links' engagement overview."|trans }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard_index') }}">{{ 'Relink'|trans }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ 'Dashboard'|trans }}</li>
+        </ol>
+    </nav>
+    <div class="card border-0 shadow mb-3">
+        <div class="card-body">
+            <h5 class="card-title text-primary">{{ 'Minify'|trans }}</h5>
+            <h6 class="card-subtitle mb-3 text-muted">{{ 'Enter a long link below to quickly minify or shorten it.'|trans }}</h6>
+            {% form_theme form '_form.html.twig' %}
+            {{ form_start(form, { 'action': url('links_create') }) }}
+                {{ form_widget(form) }}
+                <div class="btn-toolbar">
+                    <a class="btn btn-outline-dark" data-loading href="{{ url('links_create') }}" role="button">
+                        <i class="fas fa-external-link-alt mr-1"></i> {{ 'Advanced'|trans }}
+                    </a>
+                    <button class="btn btn-success ml-auto" type="submit">
+                        <i class="fas fa-check mr-1"></i> {{ 'Minify'|trans }}
+                    </button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card bg-gradient-primary border-0 mb-3 mb-md-0">
+                <div class="card-body">
+                    <h5 class="card-title text-white">{{ 'Click|Clicks'|trans({ '%count%': 2 }) }}</h5>
+                    <h6 class="card-subtitle text-dark mb-3">{{ 'Last 7 days summary.'|trans }}</h6>
+                    <div class="ct-chart ct-minor-seventh" data-chart="clicks" data-url="{{ url('dashboard_clicks') }}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card bg-gradient-secondary border-0 mb-3">
+                <div class="card-body">
+                    <h5 class="card-title text-white">{{ 'Link|Links'|trans({ '%count%': 2 }) }}</h5>
+                    <h6 class="card-subtitle text-dark">{{ 'The most clicked ones.'|trans }}</h6>
+                    <div class="ct-chart ct-minor-seventh" data-chart="popular" data-url="{{ url('dashboard_popular') }}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

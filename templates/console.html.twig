@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header class="sticky-top">
+        <div class="d-lg-none">
+            {% include '_navbar.html.twig' %}
+        </div>
+        <div class="bg-primary d-none d-lg-block py-1"></div>
+    </header>
+    <div class="container my-3 my-lg-5">
+        <div class="row">
+            {% block aside %}
+                <aside class="col-lg-3 d-none d-lg-block">
+                    <div class="card mb-3">
+                        <div class="card-body px-3 py-2">
+                            <p class="mb-0"><small class="text-muted">{{ 'Logged in as:'|trans }}</small></p>
+                            <h5 class="my-1">{{ app.user.name }}</h5>
+                            <a href="mailto:{{ app.user.email }}">{{ app.user.email }}</a>
+                        </div>
+                    </div>
+                    {% include '_sidebar.html.twig' %}
+                </aside>
+            {% endblock %}
+            {% block main %}
+                <main class="col-lg-9">
+                    <div class="jumbotron jumbotron-fluid rounded py-3 px-4 mb-3">
+                        <h1 class="display-5">{% block heading %}{% endblock %}</h1>
+                        <p class="lead text-muted mb-0">{% block subheading %}{% endblock %}</p>
+                    </div>
+                    {% include '_flash.html.twig' %}
+                    {% block content %}{% endblock %}
+                    <footer class="text-center text-lg-right mt-3">
+                        <small>{% include '_copyright.html.twig' %}</small>
+                    </footer>
+                </main>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

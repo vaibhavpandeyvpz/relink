@@ -1,0 +1,41 @@
+<ul class="nav nav-sidebar flex-column">
+    <li class="nav-item">
+        <a class="nav-link {{ active('dashboard_index') }}" data-loading href="{{ url('dashboard_index') }}">
+            <i class="fas fa-chart-line fa-fw mr-1"></i> {{ 'Dashboard'|trans }}
+        </a>
+    </li>
+    <li class="bg-light text-uppercase px-2 py-1 my-2"><small>{{ 'Manage'|trans }}</small></li>
+    <li class="nav-item">
+        <a class="nav-link {{ active('links.*') }}" data-loading href="{{ url('links_index') }}">
+            <i class="fas fa-link fa-fw mr-1"></i> {{ 'Link|Links'|trans({ '%count%': 2 }) }}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ active('clicks.*') }}" data-loading href="{{ url('clicks_index') }}">
+            <i class="fas fa-mouse-pointer fa-fw mr-1"></i> {{ 'Click|Clicks'|trans({ '%count%': 2 }) }}
+        </a>
+    </li>
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+            <a class="nav-link {{ active('users.*') }}" data-loading href="{{ url('users_index') }}">
+                <i class="fas fa-user-friends fa-fw mr-1"></i> {{ 'User|Users'|trans({ '%count%': 2 }) }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ active('settings_index') }}" data-loading href="{{ url('settings_index') }}">
+                <i class="fas fa-cog fa-fw mr-1"></i> {{ 'Settings'|trans }}
+            </a>
+        </li>
+    {% endif %}
+    <li class="bg-light text-uppercase px-2 py-1 my-2"><small>{{ 'Account'|trans }}</small></li>
+    <li class="nav-item">
+        <a class="nav-link {{ active('profile_index') }}" data-loading href="{{ url('profile_index') }}">
+            <i class="fas fa-user fa-fw mr-1"></i> {{ 'Profile'|trans }}
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-loading href="{{ url('logout') }}">
+            <i class="fas fa-sign-out-alt fa-fw mr-1"></i> {{ 'Logout'|trans }}
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,40 @@
+{% extends 'console.html.twig' %}
+
+{% block title %}{{ 'Edit'|trans }} - {{ 'Link|Links'|trans({ '%count%': 1 }) }} #{{ link.id }} - {{ 'Link|Links'|trans({ '%count%': 2 }) }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block heading %}{{ 'Link|Links'|trans({ '%count%': 1 }) }} #{{ link.id }}{% endblock %}
+{% block subheading %}{{ 'Edit or update existing link.'|trans }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard_index') }}">{{ 'Relink'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('links_index') }}">{{ 'Link|Links'|trans({ '%count%': 2 }) }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('links_view', { 'id': link.id }) }}">{{ 'Link|Links'|trans({ '%count%': 1 }) }} #{{ link.id }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ 'Edit'|trans }}</li>
+        </ol>
+    </nav>
+    <div class="card border-0 shadow">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-10">
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <div class="row">
+                            <div class="offset-sm-3 col-sm-9">
+                                <div class="btn-toolbar">
+                                    <button class="btn btn-success" type="submit">
+                                        <i class="fas fa-check mr-1"></i> {{ 'Update'|trans }}
+                                    </button>
+                                    <a class="btn btn-outline-dark ml-1" data-loading href="{{ url('links_view', { 'id': link.id }) }}" role="button">
+                                        <i class="fas fa-times mr-1"></i> {{ 'Cancel'|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

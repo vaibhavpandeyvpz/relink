@@ -1,0 +1,106 @@
+{% extends 'console.html.twig' %}
+
+{% block title %}{{ 'Click|Clicks'|trans({ '%count%': 1 }) }} #{{ click.id }} - {{ 'Click|Clicks'|trans({ '%count%': 2 }) }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block heading %}{{ 'Click|Clicks'|trans({ '%count%': 1 }) }} #{{ click.id }}{% endblock %}
+{% block subheading %}{{ 'Details of an existing click.'|trans }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard_index') }}">{{ 'Relink'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('clicks_index') }}">{{ 'Click|Clicks'|trans({ '%count%': 2 }) }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ 'Click|Clicks'|trans({ '%count%': 1 }) }} #{{ click.id }}</li>
+        </ol>
+    </nav>
+    <div class="card border-0 shadow">
+        <div class="card-body">
+            <div class="btn-toolbar">
+                <a class="btn btn-outline-dark" data-loading href="{{ url('clicks_index') }}">
+                    <i class="fas fa-arrow-left mr-1"></i> {{ 'Back'|trans }}
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="bg-light">
+                <tr>
+                    <th>{{ 'Properties'|trans }}</th>
+                    <th class="w-100"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">{{ 'Link|Links'|trans({ '%count%': 1 }) }}:</th>
+                    <td>
+                        <a href="{{ url('links_view', { 'id': click.link.id }) }}">
+                            {% if click.link.metaTitle is not empty %}
+                                {% set display = click.link.metaTitle %}
+                            {% else %}
+                                {% set display = click.link.target %}
+                            {% endif %}
+                            {% if display|length > 32 %}
+                                {{ display|slice(0, 32) }}&hellip;
+                            {% else %}
+                                {{ display }}
+                            {% endif %}
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'Browser'|trans }}:</th>
+                    <td>
+                        {% if click.browser is not empty %}
+                            {{ click.browserName }}
+                            {% if click.browserVersion is not empty %}
+                                <span class="text-muted">({{ click.browserVersion }})</span>
+                            {% endif %}
+                        {% else %}
+                            <span class="text-muted">{{ 'n/a'|trans }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'Platform'|trans }}:</th>
+                    <td>
+                        {% if click.platform is not empty %}
+                            {{ click.platformName }}
+                            {% if click.platformVersion is not empty %}
+                                <span class="text-muted">({{ click.platformVersion }})</span>
+                            {% endif %}
+                        {% else %}
+                            <span class="text-muted">{{ 'n/a'|trans }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'Device'|trans }}:</th>
+                    <td>
+                        {% if click.device is not empty %}
+                            {{ click.device }}
+                        {% else %}
+                            <span class="text-muted">{{ 'n/a'|trans }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'IP address'|trans }}:</th>
+                    <td><a href="https://ipapi.co/{{ click.ipAddress }}/" target="_blank">{{ click.ipAddress }}</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer p-1 text-right">
+            <small>
+                <span class="text-muted">{{ 'Created'|trans }}</span>
+                <span data-toggle="tooltip" title="{{ click.createdAt.format('d/m/Y H:i') }}">{{ click.createdAtChronos.diffForHumans() }}</span>
+                <span class="text-muted">{{ 'Updated'|trans }}</span>
+                {% if click.updatedAt is not null %}
+                    <span data-toggle="tooltip" title="{{ click.updatedAt.format('d/m/Y H:i') }}">{{ click.updatedAtChronos.diffForHumans() }}</span>
+                {% else %}
+                    {{ 'n/a'|trans }}
+                {% endif %}
+            </small>
+        </div>
+    </div>
+{% endblock %}

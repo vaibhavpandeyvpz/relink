@@ -1,0 +1,152 @@
+{% extends 'console.html.twig' %}
+
+{% block title %}{{ 'Link|Links'|trans({ '%count%': 1 }) }} #{{ link.id }} - {{ 'Link|Links'|trans({ '%count%': 2 }) }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block heading %}{{ 'Link|Links'|trans({ '%count%': 1 }) }} #{{ link.id }}{% endblock %}
+{% block subheading %}{{ 'Details of an existing link.'|trans }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard_index') }}">{{ 'Relink'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('links_index') }}">{{ 'Link|Links'|trans({ '%count%': 2 }) }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ 'Link|Links'|trans({ '%count%': 1 }) }} #{{ link.id }}</li>
+        </ol>
+    </nav>
+    {% set open_url = url('home_open', { 'slug': link.slug }) %}
+    <div class="card border-0 shadow">
+        <div class="card-body">
+            <div class="btn-toolbar">
+                <a class="btn btn-outline-dark" data-loading href="{{ url('links_index') }}">
+                    <i class="fas fa-arrow-left mr-1"></i> {{ 'Back'|trans }}
+                </a>
+                <a class="btn btn-info ml-auto" data-loading href="{{ url('links_update', { 'id': link.id }) }}">
+                    <i class="fas fa-pen-alt"></i> {{ 'Edit'|trans }}
+                </a>
+                <a class="btn btn-warning ml-1" data-confirm="{{ 'Do you really want to remove this link?'|trans }}" href="{{ url('links_remove', { 'id': link.id }) }}">
+                    <i class="fas fa-trash-alt mr-1"></i> {{ 'Remove'|trans }}
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="bg-light">
+                <tr>
+                    <th colspan="2">{{ 'Properties'|trans }}</th>
+                    <th class="w-100"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th class="align-top" rowspan="{% if is_granted('ROLE_ADMIN') %}8{% else %}7{% endif %}">
+                        <img alt="{{ open_url }}" class="border mb-3" height="192" width="192" src="{{ url('links_qr', { 'slug': link.slug }) }}">
+                        <div class="btn-toolbar">
+                            <a class="btn btn-dark btn-sm" data-toggle="tooltip" href="{{ url('links_qr', { 'download': true, 'slug': link.slug }) }}" title="{{ 'Download QR code'|trans }}"><i class="fas fa-download"></i></a>
+                            <a class="btn btn-facebook btn-sm ml-auto" data-toggle="tooltip" href="http://www.facebook.com/sharer.php?u={{ open_url }}" target="_blank" title="{{ 'Share on Facebook'|trans }}">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a class="btn btn-linkedin btn-sm ml-1" data-toggle="tooltip" href="https://www.linkedin.com/shareArticle?mini=true&url={{ open_url }}" target="_blank" title="{{ 'Share on LinkedIn'|trans }}">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a class="btn btn-twitter btn-sm ml-1" data-toggle="tooltip" href="https://twitter.com/share?url={{ open_url }}" target="_blank" title="{{ 'Share on Twitter'|trans }}">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </th>
+                    <th scope="row">{{ 'Minified'|trans }}:</th>
+                    <td>
+                        <a data-copy href="{{ open_url }}" target="_blank">{{ open_url }}</a>
+                        <small class="text-muted text-lowercase">({{ 'Click to copy'|trans }})</small>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="align-top" scope="row">{{ 'Target'|trans }}:</th>
+                    <td style="white-space: normal; word-break: break-all"><a href="{{ link.target }}" target="_blank">{{ link.target }}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'Click|Clicks'|trans({ '%count%': 2 }) }}:</th>
+                    <td>{{ link.clicks.count }}</td>
+                </tr>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <tr>
+                        <th scope="row">{{ 'User|Users'|trans({ '%count%': 1 }) }}:</th>
+                        <td>
+                            {% if link.user %}
+                                <a href="{{ url('users_view', { 'id': link.user.id }) }}">{{ link.user.name }}</a>
+                            {% else %}
+                                <span class="text-muted">{{ 'Anonymous'|trans }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th scope="row">{{ 'Meta title'|trans }}:</th>
+                    <td>
+                        {% if link.metaTitle %}
+                            {{ link.metaTitle }}
+                        {% else %}
+                            <span class="text-muted">{{ 'n/a'|trans }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="align-top" scope="row">{{ 'Meta description'|trans }}:</th>
+                    <td style="white-space: normal">
+                        {% if link.metaDescription %}
+                            {{ link.metaDescription }}
+                        {% else %}
+                            <span class="text-muted">{{ 'n/a'|trans }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'Mode'|trans }}:</th>
+                    <td>
+                        {% if link.mode == 'iframe' %}
+                            {{ 'IFrame'|trans }}
+                        {% elseif link.mode == 'interstitial' %}
+                            {{ 'Interstitial'|trans }}
+                        {% else %}
+                            {{ 'Direct'|trans }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'Expires'|trans }}:</th>
+                    <td>
+                        {% if link.expiresAt %}
+                            <span class="{% if link.expiresAtChronos.isPast() %}text-danger{% endif %}" data-toggle="tooltip" title="{{ link.expiresAt.format('d/m/Y H:i') }}">
+                                {{ link.expiresAtChronos.diffForHumans() }}
+                            </span>
+                        {% else %}
+                            <span class="text-muted">{{ 'n/a'|trans }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer p-1 text-right">
+            <small>
+                <span class="text-muted">{{ 'Created'|trans }}</span>
+                <span data-toggle="tooltip" title="{{ link.createdAt.format('d/m/Y H:i') }}">{{ link.createdAtChronos.diffForHumans() }}</span>
+                <span class="text-muted">{{ 'Updated'|trans }}</span>
+                {% if link.updatedAt is not null %}
+                    <span data-toggle="tooltip" title="{{ link.updatedAt.format('d/m/Y H:i') }}">{{ link.updatedAtChronos.diffForHumans() }}</span>
+                {% else %}
+                    {{ 'n/a'|trans }}
+                {% endif %}
+            </small>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const translations = {
+            'Cancel': '{{ 'Cancel'|trans }}',
+            'Remove': '{{ 'Remove'|trans }}'
+        }
+    </script>
+    {{ parent() }}
+{% endblock %}

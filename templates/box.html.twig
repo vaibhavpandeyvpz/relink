@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="h-100 d-flex">
+        <div class="container my-auto">
+            <div class="row justify-content-center">
+                {% block main %}
+                    <main class="col-sm-10 col-md-8 col-lg-6 col-xl-4 my-3">
+                        {% include '_flash.html.twig' %}
+                        {% if error is defined and error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        {% block content %}{% endblock %}
+                        <footer class="text-center mt-3">
+                            <small>{% include '_copyright.html.twig' %}</small>
+                        </footer>
+                    </main>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

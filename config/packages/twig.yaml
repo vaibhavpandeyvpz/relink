@@ -1,4 +1,5 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     debug: '%kernel.debug%'
+    form_themes: ['_form_horizontal.html.twig']
     strict_variables: '%kernel.debug%'

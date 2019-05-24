@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">{{ 'Relink'|trans }}</a>
+        <button aria-controls="navbar-menu" aria-expanded="false" aria-label="{{ 'Toggle navigation'|trans }}" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-main">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-main">
+            <ul class="navbar-nav text-center text-lg-left" role="menu">
+                <li class="nav-item">
+                    <a class="nav-link {{ active('dashboard_index') }}" href="{{ url('dashboard_index') }}">
+                        <i class="fas fa-chart-line fa-fw"></i> <span class="d-sm-none d-md-inline ml-1">{{ 'Dashboard'|trans }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ active('links.*') }}" href="{{ url('links_index') }}">
+                        <i class="fas fa-link fa-fw"></i> <span class="d-sm-none d-md-inline ml-1">{{ 'Link|Links'|trans({ '%count%': 2 }) }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ active('clicks.*') }}" href="{{ url('clicks_index') }}">
+                        <i class="fas fa-mouse-pointer fa-fw"></i> <span class="d-sm-none d-md-inline ml-1">{{ 'Click|Clicks'|trans({ '%count%': 2 }) }}</span>
+                    </a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link {{ active('users.*') }}" href="{{ url('users_index') }}">
+                            <i class="fas fa-user-friends fa-fw"></i> <span class="d-sm-none d-md-inline ml-1">{{ 'User|Users'|trans({ '%count%': 2 }) }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ active('settings_index') }}" href="{{ url('settings_index') }}">
+                            <i class="fas fa-cog fa-fw"></i> <span class="d-sm-none d-md-inline ml-1">{{ 'Settings'|trans }}</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav text-center text-lg-left ml-sm-auto" role="menu">
+                <li class="nav-item">
+                    <a class="nav-link {{ active('profile_index') }}" href="{{ url('profile_index') }}">
+                        <i class="fas fa-user fa-fw mr-1"></i> {{ 'Profile'|trans }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('logout') }}">
+                        <i class="fas fa-sign-out-alt fa-fw"></i> <span class="d-sm-none ml-1">{{ 'Logout'|trans }}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

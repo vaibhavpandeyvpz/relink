@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <title></title>
+    {% block stylesheets %}
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+            }
+            body {
+                font-family: sans-serif;
+            }
+            img {
+                margin: 0 !important;
+            }
+            main {
+                max-width: 640px;
+                margin: 32px auto;
+            }
+            .separator {
+                background: #00a1f1;
+                content: "";
+                display: block;
+                height: 4px;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <main>
+        {% block main %}
+            <h1 class="text-primary">{{ 'Relink'|trans({}, 'messages', 'en') }}</h1>
+            <div class="separator"></div>
+            {% block content %}{% endblock %}
+            {{ 'Regards'|trans({}, 'messages', 'en') }}<br>
+            {{ 'Relink'|trans({}, 'messages', 'en') }}
+        {% endblock %}
+    </main>
+{% endblock %}
+</body>
+</html>

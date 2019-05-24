@@ -1,0 +1,89 @@
+{% extends 'console.html.twig' %}
+
+{% block title %}{{ 'User|Users'|trans({ '%count%': 1 }) }} #{{ user.id }} - {{ 'User|Users'|trans({ '%count%': 2 }) }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block heading %}{{ 'User|Users'|trans({ '%count%': 1 }) }} #{{ user.id }}{% endblock %}
+{% block subheading %}{{ 'Details of an existing user.'|trans }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard_index') }}">{{ 'Relink'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('users_index') }}">{{ 'User|Users'|trans({ '%count%': 2 }) }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ 'User|Users'|trans({ '%count%': 1 }) }} #{{ user.id }}</li>
+        </ol>
+    </nav>
+    <div class="card border-0 shadow">
+        <div class="card-body">
+            <div class="btn-toolbar">
+                <a class="btn btn-outline-dark" data-loading href="{{ url('users_index') }}">
+                    <i class="fas fa-arrow-left mr-1"></i> {{ 'Back'|trans }}
+                </a>
+                <a class="btn btn-info ml-auto" data-loading href="{{ url('users_update', { 'id': user.id }) }}">
+                    <i class="fas fa-pen-alt mr-1"></i> {{ 'Edit'|trans }}
+                </a>
+                <a class="btn btn-warning ml-1" data-confirm="{{ 'Do you really want to remove this user?'|trans }}" href="{{ url('users_remove', { 'id': user.id }) }}">
+                    <i class="fas fa-trash-alt mr-1"></i> {{ 'Remove'|trans }}
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="bg-light">
+                <tr>
+                    <th>{{ 'Properties'|trans }}</th>
+                    <th class="w-100"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">{{ 'Name'|trans }}:</th>
+                    <td>{{ user.name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'Email address'|trans }}:</th>
+                    <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'Roles'|trans }}:</th>
+                    <td>
+                        {% for role in user.roles %}
+                            {% if role == 'ROLE_ADMIN' %}
+                                <span class="badge badge-light text-lowercase">{{ 'Administrator|Administrators'|trans({ '%count%': 1 }) }}</span>
+                            {% else %}
+                                <span class="badge badge-light text-lowercase">{{ 'User|Users'|trans({ '%count%': 1 }) }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">{{ 'Click|Clicks'|trans({'%count%': 2}) }}:</th>
+                    <td>{{ user.links.count }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer p-1 text-right">
+            <small>
+                <span class="text-muted">{{ 'Created'|trans }}</span>
+                <span data-toggle="tooltip" title="{{ user.createdAt.format('d/m/Y H:i') }}">{{ user.createdAtChronos.diffForHumans() }}</span>
+                <span class="text-muted">{{ 'Updated'|trans }}</span>
+                {% if user.updatedAt is not null %}
+                    <span data-toggle="tooltip" title="{{ user.updatedAt.format('d/m/Y H:i') }}">{{ user.updatedAtChronos.diffForHumans() }}</span>
+                {% else %}
+                    {{ 'n/a'|trans }}
+                {% endif %}
+            </small>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const translations = {
+            'Cancel': '{{ 'Cancel'|trans }}',
+            'Remove': '{{ 'Remove'|trans }}'
+        }
+    </script>
+    {{ parent() }}
+{% endblock %}

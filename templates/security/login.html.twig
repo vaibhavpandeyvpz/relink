@@ -1,0 +1,55 @@
+{% extends 'box.html.twig' %}
+
+{% block title %}{{ 'Login'|trans }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="card shadow border-0">
+        <div class="card-body">
+            <h5 class="text-primary">{{ 'Login'|trans }}</h5>
+            <p class="card-text">{{ 'Enter your login credentials below to access %relink% dashboard.'|trans({ '%relink%': 'Relink'|trans }) }}</p>
+            <form method="post">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <div class="form-group">
+                    <label for="login-email">{{ 'Email address'|trans }} <span class="text-danger">&ast;</span></label>
+                    <input autofocus="autofocus" class="form-control" id="login-email" name="email" required type="email" value="{{ last_username }}">
+                    <small class="form-text text-muted">{{ 'Enter your registered email address.'|trans }}</small>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">{{ 'Password'|trans }} <span class="text-danger">&ast;</span></label>
+                    <input class="form-control" id="login-password" name="password" required type="password">
+                    <small class="form-text text-muted">{{ 'Enter the password associated with above account.'|trans }}</small>
+                    <p class="text-right mt-1">
+                        <a href="{{ url('forgot_password') }}">{{ 'Forgot it? Reset here.'|trans }}</a>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <div class="custom-control custom-switch">
+                        <input class="custom-control-input" id="login-remember-me" name="_remember_me" type="checkbox">
+                        <label class="custom-control-label" for="login-remember-me">{{ 'Do not ask again?'|trans }}</label>
+                    </div>
+                </div>
+                <div class="btn-toolbar">
+                    <button class="btn btn-success" type="submit">
+                        {{ 'Login'|trans }} <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                {% if facebook_enabled or google_enabled %}
+                    <hr>
+                    <p class="text-muted">{{ 'You may also use any of the below services to quickly login:'|trans }}</p>
+                    <div class="btn-toolbar">
+                        {% if facebook_enabled %}
+                            <a class="btn btn-facebook btn-sm" href="{{ url('connect_facebook') }}" role="button">
+                                <i class="fab fa-facebook-f mr-1"></i> {{ 'Facebook'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if google_enabled %}
+                            <a class="btn btn-google btn-sm ml-1" href="{{ url('connect_google') }}" role="button">
+                                <i class="fab fa-google mr-1"></i> {{ 'Google'|trans }}
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

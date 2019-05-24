@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ link.metaTitle }}{% endblock %}
+
+{% block metatags %}
+    {% if link.metaDescription is not empty %}
+        <meta name="description" content="{{ link.metaDescription }}">
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background: transparent;
+            overflow: hidden;
+        }
+    </style>
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    {% if settings.tracking_scripts_head is not empty %}
+        {{ settings.tracking_scripts_head|raw }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand navbar-dark bg-secondary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url('home_index') }}">
+                <strong class="text-uppercase">{{ 'Relink'|trans }}</strong>
+            </a>
+            <div class="collapse navbar-collapse">
+                {% set open_url = url('home_open', {'slug': link.slug}) %}
+                <div class="btn-toolbar m-2 ml-auto">
+                    <a class="btn btn-facebook btn-sm" data-toggle="tooltip" href="http://www.facebook.com/sharer.php?u={{ open_url }}" target="_blank" title="{{ 'Share on Facebook'|trans }}">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-linkedin btn-sm ml-1" data-toggle="tooltip" href="https://www.linkedin.com/shareArticle?mini=true&url={{ open_url }}" target="_blank" title="{{ 'Share on LinkedIn'|trans }}">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a class="btn btn-twitter btn-sm ml-1 mr-auto" data-toggle="tooltip" href="https://twitter.com/share?url={{ open_url }}" target="_blank" title="{{ 'Share on Twitter'|trans }}">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ link.target }}">
+                            <i class="fas fa-times mr-1"></i> {{ 'Remove frame'|trans }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <iframe class="border-0 overflow-auto position-absolute w-100" src="{{ link.target }}"></iframe>
+    {% if settings.tracking_scripts_body is not empty %}
+        {{ settings.tracking_scripts_body|raw }}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        (function() {
+            var navbar = document.getElementsByTagName('nav')[0];
+            var iframe = document.getElementsByTagName('iframe')[0];
+            iframe.height = (window.innerHeight - navbar.offsetHeight) + 'px'
+        })()
+    </script>
+    {{ parent() }}
+{% endblock %}

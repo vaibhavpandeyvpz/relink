@@ -1,0 +1,118 @@
+@import "variables";
+
+@import "~bootstrap/scss/bootstrap";
+@import "~chartist/dist/scss/chartist.scss";
+@import "chartist";
+@import '~datatables.net-bs4/css/dataTables.bootstrap4';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~jquery-datetimepicker/jquery.datetimepicker.css";
+@import '~node-snackbar/src/sass/snackbar';
+
+.alert {
+  border-left-width: 4px;
+}
+
+@each $color, $value in $theme-colors {
+  .alert-#{$color} {
+    border-left-width: 4px;
+    @include box-shadow(0 2px 4px rgba($value, .25));
+  }
+  .bg-gradient-#{$color} {
+    background: $value linear-gradient(180deg, mix($body-bg, $value, 15%), $value) repeat-x;
+  }
+  .btn-#{$color} {
+    border-color: darken($value, 10%);
+  }
+}
+
+.btn {
+  &-facebook {
+    @include button-variant($facebook, darken($facebook, 10%));
+  }
+  &-google {
+    @include button-variant($google, darken($google, 10%));
+  }
+  &-linkedin {
+    @include button-variant($linkedin, darken($linkedin, 10%));
+  }
+  &-twitter {
+    @include button-variant($twitter, darken($twitter, 10%));
+  }
+}
+
+.dataTable {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.dataTables_filter label,
+.dataTables_length label {
+  margin-bottom: 0 !important;
+}
+
+.dataTables_info {
+  padding-top: 0 !important;
+}
+
+.dataTables_paginate .pagination {
+  margin: 0 !important;
+  justify-content: center !important;
+}
+
+.dataTables_wrapper {
+  .dataTables_length,
+  .dataTables_filter,
+  .dataTables_info,
+  .dataTables_paginate {
+    text-align: inherit !important;
+  }
+}
+
+.display-5 {
+  font-size: 2.5rem;
+}
+
+.media-body {
+  line-height: 1.1rem;
+  overflow: hidden;
+}
+
+.nav-sidebar .nav-link {
+  background: $sidebar-link-bg;
+  color: $sidebar-link-color;
+  line-height: 2em;
+  overflow: hidden;
+  padding: 0 1em;
+  .fab, .far, .fas {
+    opacity: 1;
+    transition: all .15s ease;
+  }
+  &.active {
+    color: $sidebar-link-active-color;
+  }
+  &:active, &:hover {
+    background: $sidebar-link-hover-bg;
+    color: $sidebar-link-hover-color;
+    .fab, .far, .fas {
+      opacity: .5;
+      transform: scale(2.0);
+    }
+  }
+}
+
+.snackbar-container .action {
+  color: $primary !important;
+}
+
+.table {
+  &-responsive .table {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    th, td {
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+  }
+}

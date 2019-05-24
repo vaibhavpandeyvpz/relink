@@ -1,0 +1,68 @@
+{% extends 'console.html.twig' %}
+
+{% block title %}{{ 'Link|Links'|trans({ '%count%': 2 }) }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block heading %}{{ 'Link|Links'|trans({ '%count%': 2 }) }}{% endblock %}
+{% block subheading %}{{ 'List and manage links.'|trans }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard_index') }}">{{ 'Relink'|trans }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ 'Link|Links'|trans({ '%count%': 2 }) }}</li>
+        </ol>
+    </nav>
+    <div class="card border-0 shadow" data-widget="datatable">
+        <div class="card-body">
+            <div class="btn-toolbar">
+                <button class="btn btn-outline-dark" data-tool="reload" disabled>
+                    <i class="fas fa-sync fa-spin fa-fw"></i> {{ 'Reload'|trans }}
+                </button>
+                <button class="btn btn-danger ml-1" data-confirm="{{ 'Do you really want to remove %count% selected links?'|trans }}" data-message="{{ 'Please select at least 1 link to remove.'|trans }}" data-tool="remove" data-url="{{ url('links_removebatch') }}" disabled>
+                    <i class="fas fa-trash-alt"></i> <span class="ml-1">{{ 'Remove'|trans }}</span>
+                </button>
+                <a class="btn btn-success ml-auto" data-loading href="{{ url('links_create') }}" role="button">
+                    <i class="fas fa-plus mr-1"></i> {{ 'New'|trans }}
+                </a>
+            </div>
+        </div>
+        <table class="table" data-ajax='{"method": "POST", "url": "{{ url('links_datatable') }}"}' data-order='{% if is_granted('ROLE_ADMIN') %}[5, "desc"]{% else %}[4, "desc"]{% endif %}'>
+            <thead class="bg-light">
+            <tr>
+                <th data-column='{"data": "l_id", "render": "selector"}'>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="selector-users" type="checkbox">
+                        <label class="custom-control-label" for="selector-users"></label>
+                    </div>
+                </th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th data-column='{"data": "u_id", "render": "user", "base": "{{ url('users_index') }}"}'>{{ 'User|Users'|trans({ '%count%': 1 }) }}</th>
+                {% endif %}
+                <th data-column='{"data": "l_target", "searchable": true, "render": "target"}'>{{ 'Target'|trans }}</th>
+                <th data-column='{"data": "l_clicks"}'>{{ 'Click|Clicks'|trans({ '%count%': 2 }) }}</th>
+                <th data-column='{"data": "l_expiresAt", "orderable": true, "searchable": true, "render": "timestamp"}'>{{ 'Expires'|trans }}</th>
+                <th data-column='{"data": "l_createdAt", "orderable": true, "searchable": true, "render": "timestamp"}'>{{ 'Created'|trans }}</th>
+                <th data-column='{"data": "l_id", "render": "actions", "actions": ["view", "update", "remove"], "base": "{{ url('links_index') }}", "confirmation": "{{ 'Do you really want to remove this link?'|trans }}"}'></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-muted text-center" colspan="8">{{ 'Please wait…'|trans }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const translations = {
+            'Cancel': '{{ 'Cancel'|trans }}',
+            'Details': '{{ 'Details'|trans }}',
+            'Edit': '{{ 'Edit'|trans }}',
+            'Remove': '{{ 'Remove'|trans }}',
+            'n/a': '{{ 'n/a'|trans }}'
+        }
+    </script>
+    {{ parent() }}
+{% endblock %}

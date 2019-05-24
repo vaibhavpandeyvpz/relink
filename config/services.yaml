@@ -5,6 +5,12 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    env(EMAIL_FROM_NAME): Relink
+    env(EMAIL_FROM_ADDRESS): mail@relink.app
+    env(FACEBOOK_CLIENT_ID):
+    env(FACEBOOK_CLIENT_SECRET):
+    env(GOOGLE_CLIENT_ID):
+    env(GOOGLE_CLIENT_SECRET):
 
 services:
     # default configuration for services in *this* file

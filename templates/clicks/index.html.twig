@@ -1,0 +1,70 @@
+{% extends 'console.html.twig' %}
+
+{% block title %}{{ 'Click|Clicks'|trans({ '%count%': 2 }) }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block heading %}{{ 'Click|Clicks'|trans({ '%count%': 2 }) }}{% endblock %}
+{% block subheading %}{{ 'List and manage clicks.'|trans }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard_index') }}">{{ 'Relink'|trans }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ 'Click|Clicks'|trans({ '%count%': 2 }) }}</li>
+        </ol>
+    </nav>
+    <div class="card border-0 shadow" data-widget="datatable">
+        <div class="card-body">
+            <div class="btn-toolbar">
+                <button class="btn btn-outline-dark" data-tool="reload" disabled>
+                    <i class="fas fa-sync fa-spin fa-fw"></i> {{ 'Reload'|trans }}
+                </button>
+            </div>
+        </div>
+        <table class="table" data-ajax='{"method": "POST", "url": "{{ url('clicks_datatable') }}"}' data-order='[2, "desc"]'>
+            <thead class="bg-light">
+            <tr>
+                <th data-column='{"data": "l_id", "render": "link", "base": "{{ url('links_index') }}"}'>{{ 'Link|Links'|trans({ '%count%': 1 }) }}</th>
+                <th data-column='{"data": "c_id", "searchable": true, "render": "ua"}'>{{ 'Visitor'|trans }}</th>
+                <th data-column='{"data": "c_createdAt", "orderable": true, "searchable": true, "render": "timestamp"}'>{{ 'Created'|trans }}</th>
+                <th data-column='{"data": "c_id", "render": "actions", "actions": ["view"], "base": "{{ url('clicks_index') }}"}'></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-muted text-center" colspan="8">{{ 'Please wait…'|trans }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const icons = {
+            'android': '{{ asset('build/icon-android.png') }}',
+            'apple': '{{ asset('build/icon-apple.png') }}',
+            'blackberry': '{{ asset('build/icon-blackberry.png') }}',
+            'browser': '{{ asset('build/icon-browser.png') }}',
+            'bsd': '{{ asset('build/icon-bsd.png') }}',
+            'chrome': '{{ asset('build/icon-chrome.png') }}',
+            'computer': '{{ asset('build/icon-computer.png') }}',
+            'edge': '{{ asset('build/icon-edge.png') }}',
+            'firefox': '{{ asset('build/icon-firefox.png') }}',
+            'internet-explorer': '{{ asset('build/icon-internet-explorer.png') }}',
+            'ip': '{{ asset('build/icon-ip.png') }}',
+            'linux': '{{ asset('build/icon-linux.png') }}',
+            'netscape': '{{ asset('build/icon-netscape.png') }}',
+            'opera': '{{ asset('build/icon-opera.png') }}',
+            'platform': '{{ asset('build/icon-platform.png') }}',
+            'safari': '{{ asset('build/icon-safari.png') }}',
+            'ubuntu': '{{ asset('build/icon-ubuntu.png') }}',
+            'windows': '{{ asset('build/icon-windows.png') }}',
+            'windows-old': '{{ asset('build/icon-windows-old.png') }}',
+        };
+        const translations = {
+            'Details': '{{ 'Details'|trans }}',
+            'n/a': '{{ 'n/a'|trans }}'
+        }
+    </script>
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,151 @@
+'%count% row(s) were removed from %collection%.': '%count% row(s) were removed from %collection%.'
+'Account': Account
+'Advanced': Advanced
+'Administrator|Administrators': Administrator|Administrators
+'Back': Back
+'Browser': Browser
+'Cancel': Cancel
+'Choose whether to directly redirect to the target URL or show a iframe/interstitial page.': Choose whether to directly redirect to the target URL or show a iframe/interstitial page.
+'Click|Clicks': Click|Clicks
+'Click to copy': Click to copy
+'Close': Close
+'Confirm password': Confirm password
+'Create': Create
+'Create or add a new link.': Create or add a new link.
+'Create or add a new user.': Create or add a new user.
+'Created': Created
+'Dashboard': Dashboard
+'Database URL': Database URL
+'Default password %password% is set for this user.': Default password %password% is set for this user.
+'Delay': Delay
+'Details': Details
+'Details of an existing click.': Details of an existing click.
+'Details of an existing link.': Details of an existing link.
+'Details of an existing user.': Details of an existing user.
+'Device': Device
+'Direct': Direct
+'Do not ask again?': Do not ask again?
+'Do you really want to remove this link?': Do you really want to remove this link?
+'Do you really want to remove this user?': Do you really want to remove this user?
+'Do you really want to remove %count% selected links?': Do you really want to remove %count% selected links?
+'Do you really want to remove %count% selected users?': Do you really want to remove %count% selected users?
+'Download QR code': Download QR code
+'Edit': Edit
+'Edit or update existing link.': Edit or update existing link.
+'Edit or update existing user.': Edit or update existing user.
+'Email address': Email address
+'Enter a delay (in seconds) before target redirection occurs on interstitial pages.': Enter a delay (in seconds) before target redirection occurs on interstitial pages.
+'Enter a long link below to quickly minify or shorten it.': Enter a long link below to quickly minify or shorten it.
+'Enter a new password for this user (leave blank to leave it as is).': Enter a new password for this user (leave blank to leave it as is).
+'Enter a new password for your account (only if you wish to change, leave blank otherwise).': Enter a new password for your account (only if you wish to change, leave blank otherwise).
+'Enter a short alias for this target link. Leave blank and a random one will be generated.': Enter a short alias for this target link. Leave blank and a random one will be generated.
+'Enter any scripts you would like to be included on interstitial & iframe page (inside <head></head> tags).': Enter any scripts you would like to be included on interstitial & iframe page (inside <head></head> tags).
+'Enter any scripts you would like to be included on interstitial & iframe page (inside <body></body> tags).': Enter any scripts you would like to be included on interstitial & iframe page (inside <body></body> tags).
+'Enter the email address of this user.': Enter the email address of this user.
+'Enter the meta description for iframe/interstitial page (for social sites friendliness).': Enter the meta description for interstitial page (for social sites friendliness).
+'Enter the meta title for iframe/interstitial page (for social sites friendliness).': Enter the meta title for interstitial page (for social sites friendliness).
+'Enter the name of this user.': Enter the name of this user.
+'Enter the original link or URL this short link will redirect to.': Enter the original link or URL this short link will redirect to.
+'Enter the password associated with above account.': Enter the password associated with above account.
+'Enter the password for this user (leave blank for default password).': Enter the password for this user (leave blank for default password).
+'Enter your database and email settings below to install %relink%.': Enter your database and email settings below to install %relink%.
+'Enter your desired new password.': Enter your desired new password.
+'Enter your desired new password twice and click Reset to update it.': Enter your desired new password twice and click Reset to update it.
+'Enter your email address (helpful when resetting password).': Enter your email address (helpful when resetting password).
+'Enter your full name.': Enter your full name.
+'Enter your full name e.g., Koushik Dutta.': Enter your full name e.g., Koushik Dutta.
+'Enter your login credentials below to access %relink% dashboard.': Enter your login credentials below to access %relink% dashboard.
+'Enter your registered email address.': Enter your registered email address.
+'Enter your registered email address below to receive a password reset link on your email.': Enter your registered email address below to receive a password reset link on your email.
+'Expires': Expires
+'Facebook': Facebook
+'Facebook secret': Facebook secret
+'Forgot it? Reset here.': Forgot it? Reset here.
+'Forgot password': Forgot password
+'Fresh link to reset your password has been sent to %email%.': Fresh link to reset your password has been sent to %email%.
+'Google': Google
+'Hello %user%!': Hello %user%!
+'Home': Home
+'IFrame': IFrame
+'Install': Install
+'Interstitial': Interstitial
+'IP address': IP address
+'Last 7 days summary.': Last 7 days summary.
+'Link|Links': Link|Links
+'Link %slug% was successfully created.': Link %slug% was successfully created.
+'Link %slug% was successfully removed.': Link %slug% was successfully removed.
+'Link %slug% was successfully updated.': Link %slug% was successfully updated.
+'Link to reset your %relink% password.': Link to reset your %relink% password.
+'List and manage clicks.': List and manage clicks.
+'List and manage links.': List and manage links.
+'List and manage users.': List and manage users.
+'Logged in as:': 'Logged in as:'
+'Login': Login
+'Logout': Logout
+'Manage': Manage
+'Meta description': Meta description
+'Meta title': Meta title
+'Migrate': Migrate
+'Minified': Minified
+'Minify': Minify
+'Mode': Mode
+'Name': Name
+'New': New
+'New password': New password
+'No user found with this email address.': No user found with this email address.
+'Password': Password
+'Password confirmation does not match.': Password confirmation does not match.
+'Platform': Platform
+'Please select at least 1 link to remove.': Please select at least 1 link to remove.
+'Please select at least 1 user to remove.': Please select at least 1 user to remove.
+'Please wait…': Please wait…
+'Please wait while we send you to': Please wait while we send you to
+'Popular': Popular
+'Profile': Profile
+'Profile information was successfully updated.': Profile information was successfully updated.
+'Properties': Properties
+'Purchase': Purchase
+'Redirecting…': Redirecting…
+'Redirection': Redirection
+'Regards': Regards
+'Relink': Relink
+'Reload': Reload
+'Remove': Remove
+'Remove frame': Remove frame
+'Repeat the password you entered above.': Repeat the password you entered above.
+'Reset': Reset
+'Reset password': Reset password
+'Roles': Roles
+'Save': Save
+'Scripts (head)': Scripts (head)
+'Scripts (body)': Scripts (body)
+'Select a date/time after which this short link may expire. Leave it blank to disable expiration.': Select a date/time after which this short link may expire. Leave it blank to disable expiration.
+'Select granted roles to restrict access for this user.': Select granted roles to restrict access for this user.
+'Send': Send
+'Settings': Settings
+'Settings were successfully updated.': Settings were successfully updated.
+'Share on Facebook': Share on Facebook
+'Share on LinkedIn': Share on LinkedIn
+'Share on Twitter': Share on Twitter
+'Slug': Slug
+'Target': Target
+'The most clicked ones.': The most clicked ones.
+'This password reset link has expired. Please request a new one.': This password reset link has expired. Please request a new one.
+'This value is already used.': This value is already used.
+'Toggle navigation': Toggle navigation
+'Update': Update
+'Updated': Updated
+'Update your personal information.': Update your personal information.
+'Update application settings.': Update application settings.
+'URL': URL
+'User|Users': User|Users
+'User %name% was successfully created.': User %name% was successfully created.
+'User %name% was successfully removed.': User %name% was successfully removed.
+'User %name% was successfully updated.': User %name% was successfully updated.
+'Visitor': Visitor
+'You can proceed to control panel and login below credentials:': 'You can proceed to control panel and login below credentials:'
+'You can reset your password either by <a href="%href%">clicking here</a> or visiting below url in your favorite internet browser:': 'You can reset your password either by <a href="%href%">clicking here</a> or visiting below url in your favorite internet browser:'
+'You may also use any of the below services to quickly login:': 'You may also use any of the below services to quickly login:'
+'Your cannot remove yourself from system.': Your cannot remove yourself from system.
+"Your links' engagement overview.": Your links' engagement overview.
+'n/a': n/a

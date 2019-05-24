@@ -1,0 +1,68 @@
+{% extends 'console.html.twig' %}
+
+{% block title %}{{ 'User|Users'|trans({ '%count%': 2 }) }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block heading %}{{ 'User|Users'|trans({ '%count%': 2 }) }}{% endblock %}
+{% block subheading %}{{ 'List and manage users.'|trans }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard_index') }}">{{ 'Relink'|trans }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ 'User|Users'|trans({ '%count%': 2 }) }}</li>
+        </ol>
+    </nav>
+    <div class="card border-0 shadow" data-widget="datatable">
+        <div class="card-body">
+            <div class="btn-toolbar">
+                <button class="btn btn-outline-dark" data-tool="reload" disabled>
+                    <i class="fas fa-sync fa-spin fa-fw"></i> {{ 'Reload'|trans }}
+                </button>
+                <button class="btn btn-danger ml-1" data-confirm="{{ 'Do you really want to remove %count% selected users?'|trans }}" data-message="{{ 'Please select at least 1 user to remove.'|trans }}" data-tool="remove" data-url="{{ url('users_removebatch') }}" disabled>
+                    <i class="fas fa-trash-alt"></i> <span class="ml-1">{{ 'Remove'|trans }}</span>
+                </button>
+                <a class="btn btn-success ml-auto" data-loading href="{{ url('users_create') }}" role="button">
+                    <i class="fas fa-plus mr-1"></i> {{ 'New'|trans }}
+                </a>
+            </div>
+        </div>
+        <table class="table" data-ajax='{"method": "POST", "url": "{{ url('users_datatable') }}"}' data-order='[5, "desc"]'>
+            <thead class="bg-light">
+            <tr>
+                <th data-column='{"data": "u_id", "render": "selector"}'>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="selector-users" type="checkbox">
+                        <label class="custom-control-label" for="selector-users"></label>
+                    </div>
+                </th>
+                <th data-column='{"data": "u_name", "searchable": true}'>{{ 'Name'|trans }}</th>
+                <th data-column='{"data": "u_email", "searchable": true, "render": "email"}'>{{ 'Email address'|trans }}</th>
+                <th data-column='{"data": "u_roles", "searchable": true, "render": "roles"}'>{{ 'Roles'|trans }}</th>
+                <th data-column='{"data": "u_links"}'>{{ 'Link|Links'|trans({ '%count%': 2 }) }}</th>
+                <th data-column='{"data": "u_createdAt", "orderable": true, "searchable": true, "render": "timestamp"}'>{{ 'Created'|trans }}</th>
+                <th data-column='{"data": "u_id", "render": "actions", "actions": ["view", "update", "remove"], "base": "{{ url('users_index') }}", "confirmation": "{{ 'Do you really want to remove this user?'|trans }}"}'></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-muted text-center" colspan="8">{{ 'Please wait…'|trans }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const translations = {
+            'ROLE_ADMIN': '{{ 'Administrator|Administrators'|trans({ '%count%': 1 }) }}',
+            'ROLE_USER': '{{ 'User|Users'|trans({ '%count%': 1 }) }}',
+            'Cancel': '{{ 'Cancel'|trans }}',
+            'Details': '{{ 'Details'|trans }}',
+            'Edit': '{{ 'Edit'|trans }}',
+            'Remove': '{{ 'Remove'|trans }}',
+            'n/a': '{{ 'n/a'|trans }}'
+        }
+    </script>
+    {{ parent() }}
+{% endblock %}

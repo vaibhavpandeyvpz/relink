@@ -1,0 +1,39 @@
+{% extends 'console.html.twig' %}
+
+{% block title %}{{ 'New'|trans }} - {{ 'User|Users'|trans({ '%count%': 2 }) }} | {{ 'Relink'|trans }}{% endblock %}
+
+{% block heading %}{{ 'New'|trans }}{% endblock %}
+{% block subheading %}{{ 'Create or add a new user.'|trans }}{% endblock %}
+
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard_index') }}">{{ 'Relink'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('users_index') }}">{{ 'User|Users'|trans({ '%count%': 2 }) }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ 'New'|trans }}</li>
+        </ol>
+    </nav>
+    <div class="card border-0 shadow">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-10">
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <div class="row">
+                            <div class="offset-sm-3 col-sm-9">
+                                <div class="btn-toolbar">
+                                    <button class="btn btn-success" type="submit">
+                                        <i class="fas fa-check mr-1"></i> {{ 'Save'|trans }}
+                                    </button>
+                                    <a class="btn btn-outline-dark ml-1" data-loading href="{{ url('users_index') }}" role="button">
+                                        <i class="fas fa-times mr-1"></i> {{ 'Cancel'|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
