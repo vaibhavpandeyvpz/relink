@@ -20,7 +20,7 @@ cd project-folder
 
 git clone https://github.com/vaibhavpandeyvpz/relink .
 
-echo 'APP_ENV=prod' >> .env.local
+echo APP_ENV=prod > .env.local
 composer install --no-dev
 npm install
 npm run build
