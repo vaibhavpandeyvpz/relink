@@ -1,6 +1,8 @@
 <h1 align="center">Relink</h1>
 
-<p align="center">Open-source, feature packed URL shortener (like [bit.ly](https://bit.ly/)) for business use. Made with [Symfony](https://symfony.com/) mixed with love.</p>
+<p align="center">
+    Open-source, feature packed URL shortener (like <a href="https://bit.ly/">bit.ly</a>) for business use. Made with <a href="https://symfony.com/">Symfony</a> mixed with love.
+</p>
 
 [![Screenshot](https://raw.githubusercontent.com/vaibhavpandeyvpz/relink/master/screenshot.png)](https://raw.githubusercontent.com/vaibhavpandeyvpz/relink/master/screenshot.png)
 
