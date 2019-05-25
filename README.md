@@ -1,6 +1,6 @@
 <h1 align="center">Relink</h1>
 
-Open-source, feature packed URL shortener (like [bit.ly](https://bit.ly/)) for business use. Made with [Symfony](https://symfony.com/) mixed with love.
+<p align="center">Open-source, feature packed URL shortener (like [bit.ly](https://bit.ly/)) for business use. Made with [Symfony](https://symfony.com/) mixed with love.</p>
 
 [![Screenshot](https://raw.githubusercontent.com/vaibhavpandeyvpz/relink/master/screenshot.png)](https://raw.githubusercontent.com/vaibhavpandeyvpz/relink/master/screenshot.png)
 
@@ -27,6 +27,9 @@ nano .env.local # put appropriate DATABASE_URL and MAILER_URL
 php bin/console doctrine:migrations:migrate
 php bin/console doctrine:fixtures:load # to add administrative user
 ```
+
+### Usage
+Once installed, you can login to relink using `admin@relink.app`/`88888888` email and password combination.
 
 ### License
 See [LICENSE](LICENSE) file.
