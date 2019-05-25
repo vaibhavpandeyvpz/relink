@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\PasswordResetToken;
-use App\Entity\Setting;
 use App\Entity\User;
 use App\Form\ForgotPasswordType;
 use App\Form\ResetPasswordType;
@@ -83,15 +82,13 @@ class SecurityController extends AbstractController
     {
         $error = $utils->getLastAuthenticationError();
         $last_username = $utils->getLastUsername();
-        $manager = $this->getDoctrine()->getManager();
-        $settings = $manager->getRepository(Setting::class)->findFresh();
-        $facebook_client_id = $this->getParameter('env(FACEBOOK_CLIENT_ID)');
-        $facebook_enabled = !empty($facebook_client_id);
-        $google_client_id = $this->getParameter('env(GOOGLE_CLIENT_ID)');
-        $google_enabled = !empty($google_client_id);
+        $facebook_client_id = $this->getParameter('facebook.client_id');
+        $login_with_facebook = !empty($facebook_client_id);
+        $google_client_id = $this->getParameter('google.client_id');
+        $login_with_google = !empty($google_client_id);
         return $this->render(
             'security/login.html.twig',
-            compact('error', 'facebook_enabled', 'google_enabled', 'last_username', 'settings')
+            compact('error', 'last_username', 'login_with_facebook', 'login_with_google')
         );
     }
 
