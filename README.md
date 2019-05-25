@@ -21,13 +21,13 @@ cd project-folder
 git clone https://github.com/vaibhavpandeyvpz/relink .
 
 echo APP_ENV=dev > .env.local # or APP_ENV=prod
-composer install --no-dev
+composer install # append --no-dev if using APP_ENV=prod
 npm install
 npm run build
 
 nano .env.local # put appropriate DATABASE_URL and MAILER_URL
 php bin/console doctrine:migrations:migrate
-php bin/console doctrine:fixtures:load # to add administrative user
+php bin/console doctrine:fixtures:load # to add administrative user, works only if APP_ENV=dev
 
 php bin/console server:run
 ```
