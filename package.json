@@ -8,7 +8,7 @@
         "chartist-plugin-tooltips": "0.0.17",
         "clipboard": "^2.0.4",
         "datatables.net-bs4": "^1.10.19",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "jquery-datetimepicker": "^2.5.21",
         "moment": "^2.24.0",
         "node-snackbar": "^0.1.15",
