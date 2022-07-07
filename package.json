@@ -10,7 +10,7 @@
         "datatables.net-bs4": "^1.10.19",
         "jquery": "^3.5.0",
         "jquery-datetimepicker": "^2.5.21",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "node-snackbar": "^0.1.15",
         "popper.js": "^1.15.0"
     },
