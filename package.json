@@ -15,7 +15,7 @@
         "popper.js": "^1.15.0"
     },
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.27.0",
+        "@symfony/webpack-encore": "^4.1.1",
         "chalk": "^2.4.2",
         "core-js": "^3.0.0",
         "node-sass": "^4.12.0",
